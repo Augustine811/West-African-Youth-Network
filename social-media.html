@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media - West African Youth Network</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+       <link rel="icon" type="image/png" href="images/wayn_weblogo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+
+        :root {
+            --primary: #2c5aa0;
+            --secondary: #f9a826;
+            --dark: #1a2b4c;
+            --light: #f5f7fa;
+            --facebook: #3b5998;
+            --twitter: #1da1f2;
+            --instagram: #e1306c;
+            --whatsapp: #25d366;
+            --linkedin: #0077b5;
+            --tiktok: #000000;
+        }
+
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .wayn-navbar {
+            background-color: var(--dark);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .navbar-logo {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+            margin-left: 1.5rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--secondary);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            list-style: none;
+            z-index: 10;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .navbar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .social-media-hero {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .animated-social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .icon-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .social-icon-animated {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .social-icon-animated:hover {
+            transform: translateY(-5px);
+        }
+
+        .facebook {
+            background-color: var(--facebook);
+            box-shadow: 0 5px 15px rgba(59, 89, 152, 0.4);
+        }
+
+        .twitter {
+            background-color: var(--twitter);
+            box-shadow: 0 5px 15px rgba(29, 161, 242, 0.4);
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            box-shadow: 0 5px 15px rgba(225, 48, 108, 0.4);
+        }
+
+        .whatsapp {
+            background-color: var(--whatsapp);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .linkedin {
+            background-color: var(--linkedin);
+            box-shadow: 0 5px 15px rgba(0, 119, 181, 0.4);
+        }
+
+        .tiktok {
+            background-color: var(--tiktok);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .icon-label {
+            color: white;
+            font-weight: 500;
+        }
+
+        .hero-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .shape-1 {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 10%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation: float 18s infinite ease-in-out reverse;
+        }
+
+        .shape-3 {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation: float 12s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Platforms Section */
+        .platforms-section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #666;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .platform-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .platform-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .facebook-card .platform-header {
+            background-color: var(--facebook);
+        }
+
+        .twitter-card .platform-header {
+            background-color: var(--twitter);
+        }
+
+        .instagram-card .platform-header {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .whatsapp-card .platform-header {
+            background-color: var(--whatsapp);
+        }
+
+        .linkedin-card .platform-header {
+            background-color: var(--linkedin);
+        }
+
+        .tiktok-card .platform-header {
+            background-color: var(--tiktok);
+        }
+
+        .platform-icon {
+            margin-right: 1rem;
+            font-size: 2rem;
+        }
+
+        .platform-name {
+            font-size: 1.5rem;
+        }
+
+        .platform-content {
+            padding: 1.5rem;
+        }
+
+        .platform-description {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .platform-image {
+            width: 100%;
+            height: 180px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .platform-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+            padding: 1rem 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .platform-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .platform-link:hover {
+            color: var(--dark);
+        }
+
+        .link-arrow {
+            margin-left: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .platform-link:hover .link-arrow {
+            transform: translateX(5px);
+        }
+
+        /* Live Feed Section */
+        .live-feed-section {
+            padding: 5rem 2rem;
+            background-color: #f0f4f8;
+        }
+
+        .live-feed-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feed-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feed-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .feed-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feed-image {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .feed-content {
+            padding: 1.5rem;
+        }
+
+        .feed-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        .feed-excerpt {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .feed-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Engagement Section */
+        .engagement-section {
+            padding: 5rem 2rem;
+        }
+
+        .engagement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .engagement-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .engagement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .engagement-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .engagement-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .engagement-card p {
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark);
+                padding: 1rem 0;
+            }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+
+            .nav-item {
+                margin: 0;
+            }
+
+            .nav-link {
+                display: block;
+                padding: 0.75rem 2rem;
+            }
+
+            .navbar-toggle {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="wayn-navbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="/">
+                <div class="navbar-logo" style="background-color: white; width: 40px; height: 40px; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: bold;"></div>
+                WAYN Sierra Leone
+            </a>
+            <button class="navbar-toggle" aria-label="Toggle navigation">☰</button>
+            <ul class="navbar-menu">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle">About Us</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="about.html">About WAYN</a></li>
+                        <li><a class="dropdown-item" href="vision.html">Vision</a></li>
+                        <li><a class="dropdown-item" href="mission.html">Mission</a></li>
+                        <li><a class="dropdown-item" href="mandate.html">Core Mandate</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle">Membership</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="membership.html">Our Board Members</a></li>
+                        <li><a class="dropdown-item" href="partners.html">Our Major Partners</a></li>
+                        <li><a class="dropdown-item" href="staff.html">Core Staff List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="programs.html">Programs & Projects</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle">Review Tools</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="capacity-building.html">Capacity Building</a></li>
+                        <li><a class="dropdown-item" href="review-tools.html">Resources & Tools</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active">Media</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="newsletter.html">Newsletter</a></li>
+                        <li><a class="dropdown-item active" href="social-media.html">Social Media</a></li>
+                        <li><a class="dropdown-item" href="videos.html">Video Library</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="jobs.html">Jobs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="social-media-container">
+        <!-- Hero Section -->
+        <section class="social-media-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Connect With WAYN</h1>
+                <p class="hero-subtitle">Stay updated with our latest activities, events, and youth empowerment initiatives</p>
+                <div class="animated-social-icons">
+                    <div class="icon-wrapper">
+                        <div class="social-icon-animated facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <span class="icon-label">Facebook</span>
+                    </div>
+                    <div class="icon-wrapper">
+                        <div class="social-icon-animated twitter">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                        <span class="icon-label">Twitter</span>
+                    </div>
+                    <div class="icon-wrapper">
+                        <div class="social-icon-animated instagram">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <span class="icon-label">Instagram</span>
+                    </div>
+                    <div class="icon-wrapper">
+                        <div class="social-icon-animated whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <span class="icon-label">WhatsApp</span>
+                    </div>
+                    <div class="icon-wrapper">
+                        <div class="social-icon-animated linkedin">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <span class="icon-label">LinkedIn</span>
+                    </div>
+                    <div class="icon-wrapper">
+                        <div class="social-icon-animated tiktok">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <span class="icon-label">TikTok</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-animation">
+                <div class="floating-shape shape-1"></div>
+                <div class="floating-shape shape-2"></div>
+                <div class="floating-shape shape-3"></div>
+            </div>
+        </section>
+
+        <!-- Social Media Platforms Section -->
+        <section class="platforms-section">
+            <div class="container">
+                <h2 class="section-title">Follow Us on Social Media</h2>
+                <p class="section-subtitle">Join our growing community and be part of the conversation</p>
+                
+                <div class="platforms-grid">
+                    <!-- Facebook Card -->
+                    <div class="platform-card facebook-card">
+                        <div class="platform-header">
+                            <div class="platform-icon">
+                                <i class="fab fa-facebook-f"></i>
+                            </div>
+                            <h3 class="platform-name">Facebook</h3>
+                        </div>
+                        <div class="platform-content">
+                            <p class="platform-description">
+                                Get daily updates on our programs, events, and youth empowerment activities. Join discussions and share your thoughts.
+                            </p>
+                            <div class="platform-image">
+                                WAYN Facebook Page Preview
+                            </div>
+                            <div class="platform-stats">
+                                <div class="stat">
+                                    <span class="stat-number">5.2K</span>
+                                    <span class="stat-label">Followers</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">245</span>
+                                    <span class="stat-label">Posts</span>
+                                </div>
+                            </div>
+                            <a href="https://facebook.com/WestAfricanYouthNetwork" class="platform-link" target="_blank">
+                                Follow on Facebook
+                                <span class="link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Twitter Card -->
+                    <div class="platform-card twitter-card">
+                        <div class="platform-header">
+                            <div class="platform-icon">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                            <h3 class="platform-name">Twitter</h3>
+                        </div>
+                        <div class="platform-content">
+                            <p class="platform-description">
+                                Real-time updates, quick thoughts, and engaging conversations about youth development and social change.
+                            </p>
+                            <div class="platform-image">
+                                WAYN Twitter Feed Preview
+                            </div>
+                            <div class="platform-stats">
+                                <div class="stat">
+                                    <span class="stat-number">3.8K</span>
+                                    <span class="stat-label">Followers</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">1.2K</span>
+                                    <span class="stat-label">Tweets</span>
+                                </div>
+                            </div>
+                            <a href="https://twitter.com/WAYNSierraLeone" class="platform-link" target="_blank">
+                                Follow on Twitter
+                                <span class="link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Instagram Card -->
+                    <div class="platform-card instagram-card">
+                        <div class="platform-header">
+                            <div class="platform-icon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <h3 class="platform-name">Instagram</h3>
+                        </div>
+                        <div class="platform-content">
+                            <p class="platform-description">
+                                Visual stories from our events, behind-the-scenes moments, and inspiring youth success stories.
+                            </p>
+                            <div class="platform-image">
+                                WAYN Instagram Feed Preview
+                            </div>
+                            <div class="platform-stats">
+                                <div class="stat">
+                                    <span class="stat-number">7.5K</span>
+                                    <span class="stat-label">Followers</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">356</span>
+                                    <span class="stat-label">Posts</span>
+                                </div>
+                            </div>
+                            <a href="https://instagram.com/WAYNSierraLeone" class="platform-link" target="_blank">
+                                Follow on Instagram
+                                <span class="link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Card -->
+                    <div class="platform-card whatsapp-card">
+                        <div class="platform-header">
+                            <div class="platform-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <h3 class="platform-name">WhatsApp</h3>
+                        </div>
+                        <div class="platform-content">
+                            <p class="platform-description">
+                                Join our broadcast list for instant updates or our community groups for discussions with fellow youth.
+                            </p>
+                            <div class="platform-image">
+                                WAYN WhatsApp Group Preview
+                            </div>
+                            <div class="platform-stats">
+                                <div class="stat">
+                                    <span class="stat-number">1.2K</span>
+                                    <span class="stat-label">Members</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">15</span>
+                                    <span class="stat-label">Groups</span>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/232000000000" class="platform-link" target="_blank">
+                                Join on WhatsApp
+                                <span class="link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- LinkedIn Card -->
+                    <div class="platform-card linkedin-card">
+                        <div class="platform-header">
+                            <div class="platform-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </div>
+                            <h3 class="platform-name">LinkedIn</h3>
+                        </div>
+                        <div class="platform-content">
+                            <p class="platform-description">
+                                Professional network for career development, job opportunities, and connecting with youth professionals.
+                            </p>
+                            <div class="platform-image">
+                                WAYN LinkedIn Page Preview
+                            </div>
+                            <div class="platform-stats">
+                                <div class="stat">
+                                    <span class="stat-number">2.3K</span>
+                                    <span class="stat-label">Followers</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">89</span>
+                                    <span class="stat-label">Posts</span>
+                                </div>
+                            </div>
+                            <a href="https://linkedin.com/company/west-african-youth-network" class="platform-link" target="_blank">
+                                Follow on LinkedIn
+                                <span class="link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- TikTok Card -->
+                    <div class="platform-card tiktok-card">
+                        <div class="platform-header">
+                            <div class="platform-icon">
+                                <i class="fab fa-tiktok"></i>
+                            </div>
+                            <h3 class="platform-name">TikTok</h3>
+                        </div>
+                        <div class="platform-content">
+                            <p class="platform-description">
+                                Short, engaging videos showcasing our events, youth stories, and creative advocacy campaigns.
+                            </p>
+                            <div class="platform-image">
+                                WAYN TikTok Feed Preview
+                            </div>
+                            <div class="platform-stats">
+                                <div class="stat">
+                                    <span class="stat-number">12.4K</span>
+                                    <span class="stat-label">Followers</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">124</span>
+                                    <span class="stat-label">Videos</span>
+                                </div>
+                            </div>
+                            <a href="https://tiktok.com/@WAYNSierraLeone" class="platform-link" target="_blank">
+                                Follow on TikTok
+                                <span class="link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Feed Section -->
+        <section class="live-feed-section">
+            <div class="container">
+                <h2 class="section-title">Latest from WAYN</h2>
+                <div class="live-feed-container">
+                    <div class="feed-wrapper">
+                        <div class="feed-item">
+                            <div class="feed-image">
+                                Youth Leadership Summit 2024
+                            </div>
+                            <div class="feed-content">
+                                <h3 class="feed-title">Youth Leadership Summit 2024</h3>
+                                <p class="feed-excerpt">Join us for the annual Youth Leadership Summit featuring workshops, networking, and empowerment sessions.</p>
+                                <div class="feed-meta">
+                                    <span class="feed-date">2 hours ago</span>
+                                    <span class="feed-platform">Facebook</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="feed-image">
+                                Community Outreach Program
+                            </div>
+                            <div class="feed-content">
+                                <h3 class="feed-title">Community Outreach Program</h3>
+                                <p class="feed-excerpt">Our team visited border communities to discuss youth inclusion in local governance and security.</p>
+                                <div class="feed-meta">
+                                    <span class="feed-date">1 day ago</span>
+                                    <span class="feed-platform">Instagram</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="feed-image">
+                                New Partnership Announcement
+                            </div>
+                            <div class="feed-content">
+                                <h3 class="feed-title">New Partnership Announcement</h3>
+                                <p class="feed-excerpt">WAYN partners with international organizations to expand youth empowerment programs across Sierra Leone.</p>
+                                <div class="feed-meta">
+                                    <span class="feed-date">3 days ago</span>
+                                    <span class="feed-platform">Twitter</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Engagement Section -->
+        <section class="engagement-section">
+            <div class="container">
+                <h2 class="section-title">Join the Conversation</h2>
+                <p class="section-subtitle">Your voice matters! Engage with us and other youth across West Africa</p>
+                
+                <div class="engagement-grid">
+                    <div class="engagement-card">
+                        <div class="engagement-icon">
+                            <i class="fas fa-comment-alt"></i>
+                        </div>
+                        <h3>Share Your Story</h3>
+                        <p>Have an inspiring youth story? Share it with us and we might feature it on our platforms!</p>
+                    </div>
+                    
+                    <div class="engagement-card">
+                        <div class="engagement-icon">
+                            <i class="fas fa-poll"></i>
+                        </div>
+                        <h3>Participate in Polls</h3>
+                        <p>Vote in our weekly polls on important youth issues and make your voice heard.</p>
+                    </div>
+                    
+                    <div class="engagement-card">
+                        <div class="engagement-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Attend Live Events</h3>
+                        <p>Join our live Q&A sessions and virtual events with youth leaders and experts.</p>
+                    </div>
+                    
+                    <div class="engagement-card">
+                        <div class="engagement-icon">
+                            <i class="fas fa-hashtag"></i>
+                        </div>
+                        <h3>Use Our Hashtags</h3>
+                        <p>Share your content using #WAYNYouth and #WestAfricanYouth to be featured.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Simple navbar toggle functionality
+        document.querySelector('.navbar-toggle').addEventListener('click', function() {
+            document.querySelector('.navbar-menu').classList.toggle('active');
+        });
+        
+        // Add hover effect to social icons
+        const socialIcons = document.querySelectorAll('.social-icon-animated');
+        socialIcons.forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.1)';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

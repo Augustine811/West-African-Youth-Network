@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAYN Video Portal</title>
+    <link rel="icon" type="image/x-icon" href="images/wayn-logo.png">
+     <link rel="icon" type="image/png" href="images/west_africayouthnetwork-logo.png">
+    <style>
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #f8a51c;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+            --light-text: #7f8c8d;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --hover-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Auth Pages */
+        .auth-container {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-color), #1e3d6f);
+            padding: 20px;
+        }
+        
+        .auth-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--hover-shadow);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .logo-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+        
+        .logo-avatar img {
+            width: 100%;
+            height: 90%;
+            object-fit: cover;
+        }
+        
+        .auth-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .auth-subtitle {
+            color: var(--light-text);
+            margin-bottom: 30px;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .auth-tab {
+            flex: 1;
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-tab.active {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1e3d6f;
+        }
+        
+        .auth-error {
+            color: var(--accent-color);
+            margin-top: 10px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        /* Dashboard Styles */
+        .dashboard {
+            display: none;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), #1e3d6f);
+            color: white;
+            padding: 20px 0;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .home-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .home-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+        
+        .user-info {
+            text-align: right;
+        }
+        
+        .user-name {
+            font-weight: 600;
+        }
+        
+        .user-role {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        /* Video Portal Styles */
+        .portal-section {
+            padding: 40px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .admin-actions {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            display: none;
+        }
+        
+        .admin-actions.active {
+            display: block;
+        }
+        
+        .actions-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .actions-header h2 {
+            color: var(--primary-color);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn-secondary {
+            background: var(--light-bg);
+            color: var(--dark-text);
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+        
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #219653;
+        }
+        
+        .btn-danger {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            width: auto;
+        }
+        
+        /* Video Grid */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .video-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .video-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .video-card:hover .video-actions {
+            opacity: 1;
+        }
+        
+        .video-content {
+            padding: 15px;
+        }
+        
+        .video-title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--dark-text);
+        }
+        
+        .video-category {
+            display: inline-block;
+            background: var(--light-bg);
+            color: var(--primary-color);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .video-description {
+            font-size: 0.9rem;
+            color: var(--light-text);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--light-text);
+        }
+        
+        /* Video Player Section */
+        .video-player-section {
+            padding: 40px 0;
+            background: white;
+        }
+        
+        .player-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .main-video-player {
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .video-player-frame {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+        
+        .player-info {
+            padding: 25px;
+        }
+        
+        .player-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+        
+        .player-description {
+            color: var(--light-text);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .player-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .player-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+        
+        .modal-title {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-col {
+            flex: 1;
+        }
+        
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-buttons {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .user-menu {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .user-info {
+                text-align: center;
+            }
+            
+            .logout-btn, .home-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .actions-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .action-buttons {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-player-frame {
+                height: 300px;
+            }
+            
+            .player-meta {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .player-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .auth-card {
+                padding: 30px 20px;
+            }
+            
+            .admin-actions {
+                padding: 20px 15px;
+            }
+            
+            .modal-content {
+                padding: 20px 15px;
+            }
+            
+            .logo-img {
+                height: 30px;
+            }
+            
+            .logo span {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Auth Pages -->
+    <div class="auth-container" id="authPage">
+        <div class="auth-card">
+            <div class="logo-avatar">
+                <!-- WAYN Logo Image -->
+                <img src="images/west_africayouthnetwork-logo.png" alt="WAYN Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <span style="display: none;">WAYN</span>
+            </div>
+            
+            <h1 class="auth-title">WAYN Video Portal</h1>
+            <p class="auth-subtitle">West African Youth Network</p>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">Login</div>
+                <div class="auth-tab" data-tab="register">Create Account</div>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form active">
+                <div class="form-group">
+                    <label class="form-label" for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+                </div>
+                
+                <div class="auth-error" id="loginError">
+                    Invalid email or password. Please try again.
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <span>🔐</span> Login
+                </button>
+            </form>
+            
+            <!-- Registration Form -->
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label class="form-label" for="registerName">Full Name</label>
+                    <input type="text" id="registerName" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" class="form-control" placeholder="Create a password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" class="form-control" placeholder="Confirm your password" required>
+                </div>
+                
+                <div class="auth-error" id="registerError">
+                    Passwords do not match or account already exists.
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <span>👤</span> Create Account
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard (After Login) -->
+    <div class="dashboard" id="dashboard">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <!-- WAYN Logo Image -->
+                        <img src="images/west_africayouthnetwork-logo.png" alt="WAYN Logo" class="logo-img" onerror="this.style.display='none'">
+                        <span>Video Portal</span>
+                    </div>
+                    <div class="nav-buttons">
+                        <a href="index.html" class="home-btn">
+                            <span>🏠</span> Back to Home
+                        </a>
+                        <div class="user-menu">
+                            <div class="user-avatar">
+                                <span id="userInitial">U</span>
+                            </div>
+                            <div class="user-info">
+                                <div class="user-name" id="userName">User</div>
+                                <div class="user-role" id="userRole">Viewer</div>
+                            </div>
+                            <button class="logout-btn" id="logoutBtn">
+                                <span>🚪</span> Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Video Player Section -->
+            <section class="video-player-section">
+                <div class="container">
+                    <div class="player-container">
+                        <div class="main-video-player">
+                            <iframe class="video-player-frame" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <div class="player-info">
+                                <h3 class="player-title">Youth Peacebuilding Summit 2024 Highlights</h3>
+                                <p class="player-description">Key moments from our annual youth peacebuilding conference featuring inspiring speakers and workshops. This event brought together young leaders from across West Africa to discuss strategies for promoting peace and development in their communities.</p>
+                                <div class="player-meta">
+                                    <div class="player-stats">
+                                        <span class="views">25.4K views</span> • <span class="date">2 weeks ago</span>
+                                    </div>
+                                    <div class="player-actions">
+                                        <button class="btn btn-secondary btn-sm like-btn">👍 Like</button>
+                                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-secondary btn-sm share-btn" target="_blank">📤 Share</a>
+                                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-primary btn-sm youtube-btn" target="_blank">▶ Watch on YouTube</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Actions Section -->
+            <section class="portal-section">
+                <div class="container">
+                    <div class="admin-actions" id="adminActions">
+                        <div class="actions-header">
+                            <h2>Video Management</h2>
+                            <div class="action-buttons">
+                                <button class="btn btn-primary btn-sm" id="addVideoBtn">
+                                    <span>➕</span> Add New Video
+                                </button>
+                                <button class="btn btn-secondary btn-sm" id="manageCategoriesBtn">
+                                    <span>📂</span> Manage Categories
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Add Video Form (Initially Hidden) -->
+                        <form id="videoForm" style="display: none;">
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label class="form-label" for="videoTitle">Video Title</label>
+                                        <input type="text" id="videoTitle" class="form-control" placeholder="Enter video title" required>
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label class="form-label" for="videoCategory">Category</label>
+                                        <select id="videoCategory" class="form-control" required>
+                                            <option value="">Select a category</option>
+                                            <option value="training">Training & Workshops</option>
+                                            <option value="success">Success Stories</option>
+                                            <option value="events">Events & Conferences</option>
+                                            <option value="advocacy">Advocacy & Awareness</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label class="form-label" for="youtubeId">YouTube Video ID</label>
+                                        <input type="text" id="youtubeId" class="form-control" placeholder="Enter YouTube video ID" required>
+                                        <small style="color: var(--light-text); margin-top: 5px; display: block;">
+                                            Example: For https://www.youtube.com/watch?v=dQw4w9WgXcQ, enter "dQw4w9WgXcQ"
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label class="form-label" for="videoDuration">Duration</label>
+                                        <input type="text" id="videoDuration" class="form-control" placeholder="e.g., 15:30" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="videoDescription">Description</label>
+                                <textarea id="videoDescription" class="form-control" rows="4" placeholder="Enter video description" required></textarea>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label class="form-label" for="thumbnailUrl">Thumbnail URL</label>
+                                        <input type="url" id="thumbnailUrl" class="form-control" placeholder="https://example.com/thumbnail.jpg">
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label class="form-label" for="videoViews">Views</label>
+                                        <input type="number" id="videoViews" class="form-control" placeholder="e.g., 25000" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">
+                                    <span>💾</span> Save Video
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="cancelVideoForm">
+                                    <span>❌</span> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Video Library Section -->
+                    <div class="section-header">
+                        <h1>WAYN Video Library</h1>
+                        <p>Explore our collection of inspiring stories, training sessions, and youth empowerment content</p>
+                    </div>
+                    
+                    <div class="videos-grid" id="videosList">
+                        <!-- Videos will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit Video Modal -->
+    <div class="modal" id="editVideoModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 class="modal-title">Edit Video</h2>
+            
+            <form id="editVideoForm">
+                <input type="hidden" id="editVideoId">
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="editVideoTitle">Video Title</label>
+                            <input type="text" id="editVideoTitle" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="editVideoCategory">Category</label>
+                            <select id="editVideoCategory" class="form-control" required>
+                                <option value="">Select a category</option>
+                                <option value="training">Training & Workshops</option>
+                                <option value="success">Success Stories</option>
+                                <option value="events">Events & Conferences</option>
+                                <option value="advocacy">Advocacy & Awareness</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="editYoutubeId">YouTube Video ID</label>
+                            <input type="text" id="editYoutubeId" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="editVideoDuration">Duration</label>
+                            <input type="text" id="editVideoDuration" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="editVideoDescription">Description</label>
+                    <textarea id="editVideoDescription" class="form-control" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="editThumbnailUrl">Thumbnail URL</label>
+                            <input type="url" id="editThumbnailUrl" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="editVideoViews">Views</label>
+                            <input type="number" id="editVideoViews" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">
+                        <span>💾</span> Save Changes
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="cancelEdit">
+                        <span>❌</span> Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // User Management System
+        document.addEventListener('DOMContentLoaded', function() {
+            // Default admin account (in a real app, this would be server-side)
+            const DEFAULT_ADMIN = {
+                id: 'admin1',
+                name: 'System Administrator',
+                email: 'admin@wayn.org',
+                password: 'wayn2024',
+                role: 'admin',
+                createdAt: new Date().toISOString()
+            };
+
+            // Initialize users in localStorage if not exists
+            if (!localStorage.getItem('waynUsers')) {
+                const initialUsers = [DEFAULT_ADMIN];
+                localStorage.setItem('waynUsers', JSON.stringify(initialUsers));
+            }
+
+            // Initialize videos in localStorage if not exists
+            if (!localStorage.getItem('waynVideos')) {
+                const initialVideos = [
+                    {
+                        id: '1',
+                        title: 'Youth Peacebuilding Summit 2024 Highlights',
+                        category: 'events',
+                        youtubeId: 'dQw4w9WgXcQ',
+                        duration: '15:30',
+                        description: 'Key moments from our annual youth peacebuilding conference featuring inspiring speakers and workshops.',
+                        thumbnailUrl: 'images/videos/youth-summit-2024.jpg',
+                        views: 25400,
+                        dateAdded: new Date().toISOString()
+                    },
+                    {
+                        id: '2',
+                        title: 'Advanced Leadership Training Workshop',
+                        category: 'training',
+                        youtubeId: '9bZkp7q19f0',
+                        duration: '22:15',
+                        description: 'Complete session on leadership development and team management skills for young leaders.',
+                        thumbnailUrl: 'images/videos/leadership-training.jpg',
+                        views: 18700,
+                        dateAdded: new Date().toISOString()
+                    },
+                    {
+                        id: '3',
+                        title: 'Women in Leadership: Success Stories',
+                        category: 'success',
+                        youtubeId: 'kJQP7kiw5Fk',
+                        duration: '12:45',
+                        description: 'Inspiring stories of young women breaking barriers and leading change in their communities.',
+                        thumbnailUrl: 'images/videos/women-empowerment.jpg',
+                        views: 32100,
+                        dateAdded: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem('waynVideos', JSON.stringify(initialVideos));
+            }
+
+            // Initialize categories
+            const categories = [
+                {
+                    id: 'training',
+                    name: 'Training & Workshops',
+                    icon: '🎓',
+                    description: 'Capacity building sessions and skill development workshops'
+                },
+                {
+                    id: 'success',
+                    name: 'Success Stories',
+                    icon: '🌟',
+                    description: 'Inspiring journeys of youth transformation and achievement'
+                },
+                {
+                    id: 'events',
+                    name: 'Events & Conferences',
+                    icon: '🎪',
+                    description: 'Highlights from our major events and conferences'
+                },
+                {
+                    id: 'advocacy',
+                    name: 'Advocacy & Awareness',
+                    icon: '📢',
+                    description: 'Campaigns and awareness programs for youth rights'
+                }
+            ];
+
+            // DOM Elements
+            const authPage = document.getElementById('authPage');
+            const dashboard = document.getElementById('dashboard');
+            const authTabs = document.querySelectorAll('.auth-tab');
+            const authForms = document.querySelectorAll('.auth-form');
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const loginError = document.getElementById('loginError');
+            const registerError = document.getElementById('registerError');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const userName = document.getElementById('userName');
+            const userRole = document.getElementById('userRole');
+            const userInitial = document.getElementById('userInitial');
+            const adminActions = document.getElementById('adminActions');
+            const addVideoBtn = document.getElementById('addVideoBtn');
+            const videoForm = document.getElementById('videoForm');
+            const cancelVideoForm = document.getElementById('cancelVideoForm');
+            const videosList = document.getElementById('videosList');
+            const editVideoModal = document.getElementById('editVideoModal');
+            const editVideoForm = document.getElementById('editVideoForm');
+            const cancelEdit = document.getElementById('cancelEdit');
+            const closeModal = document.querySelector('.close-modal');
+
+            // Check if user is already logged in
+            if (localStorage.getItem('waynCurrentUser')) {
+                showDashboard();
+            } else {
+                showAuth();
+            }
+
+            // Auth tab functionality
+            authTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    authTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding form
+                    authForms.forEach(form => {
+                        form.classList.remove('active');
+                        if (form.id === `${tabId}Form`) {
+                            form.classList.add('active');
+                        }
+                    });
+                    
+                    // Clear errors
+                    loginError.style.display = 'none';
+                    registerError.style.display = 'none';
+                });
+            });
+
+            // Login functionality
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                const users = JSON.parse(localStorage.getItem('waynUsers'));
+                
+                const user = users.find(u => u.email === email && u.password === password);
+                
+                if (user) {
+                    // Successful login
+                    localStorage.setItem('waynCurrentUser', JSON.stringify(user));
+                    showDashboard();
+                    initializeDashboard(user);
+                } else {
+                    // Failed login
+                    loginError.style.display = 'block';
+                    document.getElementById('loginPassword').value = '';
+                }
+            });
+
+            // Registration functionality
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+                const confirmPassword = document.getElementById('registerConfirmPassword').value;
+                const users = JSON.parse(localStorage.getItem('waynUsers'));
+                
+                // Check if passwords match
+                if (password !== confirmPassword) {
+                    registerError.textContent = 'Passwords do not match.';
+                    registerError.style.display = 'block';
+                    return;
+                }
+                
+                // Check if user already exists
+                if (users.some(u => u.email === email)) {
+                    registerError.textContent = 'An account with this email already exists.';
+                    registerError.style.display = 'block';
+                    return;
+                }
+                
+                // Create new user (default role is 'user')
+                const newUser = {
+                    id: Date.now().toString(),
+                    name: name,
+                    email: email,
+                    password: password,
+                    role: 'user',
+                    createdAt: new Date().toISOString()
+                };
+                
+                users.push(newUser);
+                localStorage.setItem('waynUsers', JSON.stringify(users));
+                
+                // Auto-login the new user
+                localStorage.setItem('waynCurrentUser', JSON.stringify(newUser));
+                showDashboard();
+                initializeDashboard(newUser);
+                
+                alert('Account created successfully!');
+            });
+
+            // Logout functionality
+            logoutBtn.addEventListener('click', function() {
+                localStorage.removeItem('waynCurrentUser');
+                showAuth();
+            });
+
+            // Show auth page
+            function showAuth() {
+                authPage.style.display = 'flex';
+                dashboard.style.display = 'none';
+                loginError.style.display = 'none';
+                registerError.style.display = 'none';
+                loginForm.reset();
+                registerForm.reset();
+            }
+
+            // Show dashboard
+            function showDashboard() {
+                authPage.style.display = 'none';
+                dashboard.style.display = 'block';
+            }
+
+            // Initialize dashboard functionality
+            function initializeDashboard(user) {
+                // Update user info
+                userName.textContent = user.name;
+                userRole.textContent = user.role === 'admin' ? 'Administrator' : 'Viewer';
+                userInitial.textContent = user.name.charAt(0).toUpperCase();
+                
+                // Show admin actions if user is admin
+                if (user.role === 'admin') {
+                    adminActions.classList.add('active');
+                } else {
+                    adminActions.classList.remove('active');
+                }
+                
+                // Load videos
+                renderVideos(user);
+                
+                // Add video button functionality
+                addVideoBtn.addEventListener('click', function() {
+                    videoForm.style.display = 'block';
+                    addVideoBtn.style.display = 'none';
+                });
+                
+                // Cancel video form
+                cancelVideoForm.addEventListener('click', function() {
+                    videoForm.style.display = 'none';
+                    addVideoBtn.style.display = 'inline-flex';
+                    videoForm.reset();
+                });
+                
+                // Add new video
+                videoForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const newVideo = {
+                        id: Date.now().toString(),
+                        title: document.getElementById('videoTitle').value,
+                        category: document.getElementById('videoCategory').value,
+                        youtubeId: document.getElementById('youtubeId').value,
+                        duration: document.getElementById('videoDuration').value,
+                        description: document.getElementById('videoDescription').value,
+                        thumbnailUrl: document.getElementById('thumbnailUrl').value || 'images/videos/default-video.jpg',
+                        views: parseInt(document.getElementById('videoViews').value),
+                        dateAdded: new Date().toISOString()
+                    };
+                    
+                    const videos = JSON.parse(localStorage.getItem('waynVideos'));
+                    videos.push(newVideo);
+                    localStorage.setItem('waynVideos', JSON.stringify(videos));
+                    
+                    renderVideos(user);
+                    videoForm.reset();
+                    videoForm.style.display = 'none';
+                    addVideoBtn.style.display = 'inline-flex';
+                    
+                    alert('Video added successfully!');
+                });
+                
+                // Save edited video
+                editVideoForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const videoId = document.getElementById('editVideoId').value;
+                    const videos = JSON.parse(localStorage.getItem('waynVideos'));
+                    const videoIndex = videos.findIndex(v => v.id === videoId);
+                    
+                    if (videoIndex !== -1) {
+                        videos[videoIndex] = {
+                            ...videos[videoIndex],
+                            title: document.getElementById('editVideoTitle').value,
+                            category: document.getElementById('editVideoCategory').value,
+                            youtubeId: document.getElementById('editYoutubeId').value,
+                            duration: document.getElementById('editVideoDuration').value,
+                            description: document.getElementById('editVideoDescription').value,
+                            thumbnailUrl: document.getElementById('editThumbnailUrl').value,
+                            views: parseInt(document.getElementById('editVideoViews').value)
+                        };
+                        
+                        localStorage.setItem('waynVideos', JSON.stringify(videos));
+                        renderVideos(user);
+                        editVideoModal.classList.remove('active');
+                        
+                        alert('Video updated successfully!');
+                    }
+                });
+                
+                // Close modal events
+                closeModal.addEventListener('click', function() {
+                    editVideoModal.classList.remove('active');
+                });
+                
+                cancelEdit.addEventListener('click', function() {
+                    editVideoModal.classList.remove('active');
+                });
+                
+                editVideoModal.addEventListener('click', function(e) {
+                    if (e.target === editVideoModal) {
+                        editVideoModal.classList.remove('active');
+                    }
+                });
+            }
+
+            // Render videos
+            function renderVideos(user) {
+                const videos = JSON.parse(localStorage.getItem('waynVideos'));
+                videosList.innerHTML = '';
+                
+                if (videos.length === 0) {
+                    videosList.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--light-text);">
+                            <div style="font-size: 3rem; margin-bottom: 15px;">📹</div>
+                            <h3>No Videos Available</h3>
+                            <p>Check back later for new content.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                videos.forEach(video => {
+                    const category = categories.find(c => c.id === video.category);
+                    const videoCard = document.createElement('div');
+                    videoCard.className = 'video-card';
+                    videoCard.innerHTML = `
+                        <div class="video-thumbnail">
+                            <img src="${video.thumbnailUrl || 'images/videos/default-video.jpg'}" alt="${video.title}" onerror="this.src='images/videos/default-video.jpg'">
+                            <div class="video-duration">${video.duration}</div>
+                            ${user.role === 'admin' ? `
+                                <div class="video-actions">
+                                    <button class="btn btn-sm btn-secondary edit-video" data-id="${video.id}">
+                                        <span>✏️</span> Edit
+                                    </button>
+                                    <button class="btn btn-sm btn-danger delete-video" data-id="${video.id}">
+                                        <span>🗑️</span> Delete
+                                    </button>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="video-content">
+                            <h3 class="video-title">${video.title}</h3>
+                            <div class="video-category">${category ? category.icon + ' ' + category.name : 'Uncategorized'}</div>
+                            <p class="video-description">${video.description}</p>
+                            <div class="video-meta">
+                                <span class="views">${formatNumber(video.views)} views</span>
+                                <span class="date">Added: ${new Date(video.dateAdded).toLocaleDateString()}</span>
+                            </div>
+                        </div>
+                    `;
+                    videosList.appendChild(videoCard);
+                });
+                
+                // Add event listeners to edit and delete buttons (admin only)
+                if (user.role === 'admin') {
+                    document.querySelectorAll('.edit-video').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const videoId = this.getAttribute('data-id');
+                            openEditVideoModal(videoId);
+                        });
+                    });
+                    
+                    document.querySelectorAll('.delete-video').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const videoId = this.getAttribute('data-id');
+                            deleteVideo(videoId, user);
+                        });
+                    });
+                }
+            }
+
+            // Open edit video modal
+            function openEditVideoModal(videoId) {
+                const videos = JSON.parse(localStorage.getItem('waynVideos'));
+                const video = videos.find(v => v.id === videoId);
+                
+                if (video) {
+                    document.getElementById('editVideoId').value = video.id;
+                    document.getElementById('editVideoTitle').value = video.title;
+                    document.getElementById('editVideoCategory').value = video.category;
+                    document.getElementById('editYoutubeId').value = video.youtubeId;
+                    document.getElementById('editVideoDuration').value = video.duration;
+                    document.getElementById('editVideoDescription').value = video.description;
+                    document.getElementById('editThumbnailUrl').value = video.thumbnailUrl;
+                    document.getElementById('editVideoViews').value = video.views;
+                    
+                    editVideoModal.classList.add('active');
+                }
+            }
+
+            // Delete video
+            function deleteVideo(videoId, user) {
+                if (confirm('Are you sure you want to delete this video?')) {
+                    const videos = JSON.parse(localStorage.getItem('waynVideos'));
+                    const updatedVideos = videos.filter(v => v.id !== videoId);
+                    localStorage.setItem('waynVideos', JSON.stringify(updatedVideos));
+                    renderVideos(user);
+                    
+                    alert('Video deleted successfully!');
+                }
+            }
+
+            // Helper function to format numbers
+            function formatNumber(num) {
+                if (num >= 1000000) {
+                    return (num / 1000000).toFixed(1) + 'M';
+                } else if (num >= 1000) {
+                    return (num / 1000).toFixed(1) + 'K';
+                }
+                return num.toString();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs & Projects - West African Youth Network</title>
+    <link rel="icon" type="image/x-icon" href="images/wayn-logo.png">
+     <link rel="icon" type="image/png" href="images/west_africayouthnetwork-logo.png">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(253, 187, 45, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(26, 42, 108, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(178, 31, 31, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Navigation */
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        /* Home Button */
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .home-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .home-button::before {
+            content: '←';
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        
+        /* WAYN Logo */
+        .wayn-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .logo-text {
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* Transition Text with Rolling Effect */
+        .transition-text-container {
+            text-align: center;
+            margin: 20px 0 40px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .transition-text {
+            font-size: 1.4rem;
+            color: white;
+            font-weight: 500;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: inline-block;
+        }
+        
+        .word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px) rotateX(90deg);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .word.active {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+        }
+        
+        .space {
+            display: inline-block;
+            width: 6px;
+        }
+        
+        /* Programs Hero Section */
+        .programs-hero {
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Programs Grid */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .program-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .program-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .program-card:hover .program-image img {
+            transform: scale(1.1);
+        }
+        
+        .program-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(26, 42, 108, 0.9);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .program-content {
+            padding: 25px;
+        }
+        
+        .program-content h3 {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .program-description {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .program-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .program-stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fdbb2d;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .program-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .feature-tag {
+            background: rgba(253, 187, 45, 0.2);
+            color: #fdbb2d;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(253, 187, 45, 0.3);
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .project-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .project-status.active {
+            background: rgba(46, 204, 113, 0.9);
+            color: white;
+        }
+        
+        .project-status.completed {
+            background: rgba(52, 152, 219, 0.9);
+            color: white;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-content h3 {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .project-description {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .project-details {
+            margin-bottom: 20px;
+        }
+        
+        .project-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .info-item {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+        
+        .info-item strong {
+            color: white;
+        }
+        
+        .project-progress {
+            margin-top: 15px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fdbb2d, #b21f1f);
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+        
+        .progress-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.8rem;
+        }
+        
+        /* Impact Section */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .impact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .impact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .impact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .impact-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fdbb2d;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .impact-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-20px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(20px) rotate(240deg);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .programs-grid,
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .transition-text {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header-nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .programs-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .transition-text {
+                font-size: 1.1rem;
+                padding: 12px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .transition-text {
+                font-size: 1rem;
+            }
+            
+            .wayn-logo {
+                padding: 8px 15px;
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <div class="container">
+        <div class="header-nav">
+            <a href="index.html" class="home-button">Back to Home</a>
+            
+            <!-- WAYN Logo -->
+            <div class="wayn-logo">
+                <img src="images/west_africayouthnetwork-logo.png" alt="WAYN Logo" class="logo-img">
+                <span class="logo-text">WAYN Sierra Leone</span>
+            </div>
+        </div>
+        
+        <!-- Transition Text with Rolling Effect -->
+        <div class="transition-text-container">
+            <div class="transition-text" id="transitionText">
+                <!-- Words will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="programs-container">
+        <!-- Page Header -->
+        <section class="programs-hero fade-in">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>WAYN Programs & Projects</h1>
+                    <p>Transforming communities through youth-led initiatives</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Programs Section -->
+        <section class="featured-programs">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Our Featured Programs</h2>
+                    <p>Comprehensive initiatives designed to empower West African youth</p>
+                </div>
+
+                <div class="programs-grid">
+                    <!-- Program 1: Peacebuilding -->
+                    <div class="program-card fade-in">
+                        <div class="program-image">
+                            <img src="images/international_youth_day.jpg" alt="Peacebuilding Program">
+                            <div class="program-category">Peace & Governance</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>Youth Peacebuilding Initiative</h3>
+                            <p class="program-description">
+                                Empowering young leaders with conflict resolution skills and promoting peaceful coexistence in communities affected by violence and political instability.
+                            </p>
+                            <div class="program-details">
+                                <div class="program-stat">
+                                    <span class="stat-number">500+</span>
+                                    <span class="stat-label">Youth Trained</span>
+                                </div>
+                                <div class="program-stat">
+                                    <span class="stat-number">15</span>
+                                    <span class="stat-label">Communities</span>
+                                </div>
+                                <div class="program-stat">
+                                    <span class="stat-number">2020</span>
+                                    <span class="stat-label">Since</span>
+                                </div>
+                            </div>
+                            <div class="program-features">
+                                <span class="feature-tag">Conflict Resolution</span>
+                                <span class="feature-tag">Leadership</span>
+                                <span class="feature-tag">Community Engagement</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 2: Governance -->
+                    <div class="program-card fade-in">
+                        <div class="program-image">
+                            <img src="images/youth_in_governance.png" alt="Governance Program">
+                            <div class="program-category">Governance</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>Youth in Governance Program</h3>
+                            <p class="program-description">
+                                Enhancing youth participation in political processes and decision-making through capacity building, mentorship, and advocacy training.
+                            </p>
+                            <div class="program-details">
+                                <div class="program-stat">
+                                    <span class="stat-number">300+</span>
+                                    <span class="stat-label">Participants</span>
+                                </div>
+                                <div class="program-stat">
+                                    <span class="stat-number">25</span>
+                                    <span class="stat-label">Workshops</span>
+                                </div>
+                                <div class="program-stat">
+                                    <span class="stat-number">2021</span>
+                                    <span class="stat-label">Since</span>
+                                </div>
+                            </div>
+                            <div class="program-features">
+                                <span class="feature-tag">Political Participation</span>
+                                <span class="feature-tag">Advocacy</span>
+                                <span class="feature-tag">Policy Making</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 3: Education -->
+                    <div class="program-card fade-in">
+                        <div class="program-image">
+                            <img src="images/educational_reform_advocacy.png" alt="Education Program">
+                            <div class="program-category">Education</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>Educational Reform Advocacy</h3>
+                            <p class="program-description">
+                                Addressing corruption in educational systems and promoting quality education through student engagement and policy advocacy.
+                            </p>
+                            <div class="program-details">
+                                <div class="program-stat">
+                                    <span class="stat-number">1000+</span>
+                                    <span class="stat-label">Students Reached</span>
+                                </div>
+                                <div class="program-stat">
+                                    <span class="stat-number">10</span>
+                                    <span class="stat-label">Institutions</span>
+                                </div>
+                                <div class="program-stat">
+                                    <span class="stat-number">2019</span>
+                                    <span class="stat-label">Since</span>
+                                </div>
+                            </div>
+                            <div class="program-features">
+                                <span class="feature-tag">Education Reform</span>
+                                <span class="feature-tag">Anti-Corruption</span>
+                                <span class="feature-tag">Student Rights</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 4: Skills Development -->
+                    <div class="program-card fade-in">
+                        <div class="program-image">
+                            <img src="images/youth_skills_development.png" alt="Skills Development Program">
+                            <div class="program-category">Capacity Building</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>Youth Skills Development</h3>
+                            <p class="program-description">
+                                Providing vocational training, digital skills, and entrepreneurship programs to enhance youth employability and economic empowerment.
+                            </p>
+                            <div class="program-details">
+                                <div class="program-stat">
+                                    <span class="stat-number">750+</span>
+                                    <span class="stat-label">Youth Trained</span>
+                                </div>
+                                <div class="program-stat">
+                                    <span class="stat-number">5</span>
+                                    <span class="stat-label">Vocational Areas</span>
+                                </div>
+                                <div class="program-stat">
+                                    <span class="stat-number">2022</span>
+                                    <span class="stat-label">Since</span>
+                                </div>
+                            </div>
+                            <div class="program-features">
+                                <span class="feature-tag">Vocational Training</span>
+                                <span class="feature-tag">Digital Skills</span>
+                                <span class="feature-tag">Entrepreneurship</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 5: Gender Equality -->
+                    <div class="program-card fade-in">
+                        <div class="program-image">
+                            <img src="images/women&girls_empowerment.png" alt="Gender Equality Program">
+                            <div class="program-category">Gender & Inclusion</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>Women & Girls Empowerment</h3>
+                            <p class="program-description">
+                                Promoting gender equality and empowering young women through leadership training, mentorship, and advocacy against gender-based violence.
+                            </p>
+                            <div class="program-details">
+                                <div class="program-stat">
+                                    <span class="stat-number">400+</span>
+                                    <span class="stat-label">Women Empowered</span>
+                                </div>
+                                <div class="program-stat">
+                                    <span class="stat-number">12</span>
+                                    <span class="stat-label">Support Groups</span>
+                                </div>
+                                <div class="program-stat">
+                                    <span class="stat-number">2020</span>
+                                    <span class="stat-label">Since</span>
+                                </div>
+                            </div>
+                            <div class="program-features">
+                                <span class="feature-tag">Gender Equality</span>
+                                <span class="feature-tag">Women Leadership</span>
+                                <span class="feature-tag">GBV Prevention</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 6: Community Development -->
+                    <div class="program-card fade-in">
+                        <div class="program-image">
+                            <img src="images/community_development.png" alt="Community Development Program">
+                            <div class="program-category">Community Development</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>Community Resilience Program</h3>
+                            <p class="program-description">
+                                Building resilient communities through youth-led development projects, environmental conservation, and sustainable livelihood initiatives.
+                            </p>
+                            <div class="program-details">
+                                <div class="program-stat">
+                                    <span class="stat-number">20+</span>
+                                    <span class="stat-label">Projects</span>
+                                </div>
+                                <div class="program-stat">
+                                    <span class="stat-number">8</span>
+                                    <span class="stat-label">Districts</span>
+                                </div>
+                                <div class="program-stat">
+                                    <span class="stat-number">2021</span>
+                                    <span class="stat-label">Since</span>
+                                </div>
+                            </div>
+                            <div class="program-features">
+                                <span class="feature-tag">Community Development</span>
+                                <span class="feature-tag">Environment</span>
+                                <span class="feature-tag">Sustainability</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Projects Section -->
+        <section class="current-projects">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Current Projects</h2>
+                    <p>Active initiatives making impact across Sierra Leone</p>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card fade-in">
+                        <div class="project-image">
+                            <img src="images/Civil_peace_service (2).png" alt="Civil Peace Service Project">
+                            <div class="project-status active">Active</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Civil Peace Service (CPS) Program</h3>
+                            <p class="project-description">
+                                In partnership with AGIAMONDO, this project focuses on strengthening youth participation in peace processes and conflict prevention mechanisms.
+                            </p>
+                            <div class="project-details">
+                                <div class="project-info">
+                                    <span class="info-item">
+                                        <strong>Duration:</strong> 2023 - 2025
+                                    </span>
+                                    <span class="info-item">
+                                        <strong>Location:</strong> Freetown, Bo, Kenema
+                                    </span>
+                                    <span class="info-item">
+                                        <strong>Partner:</strong> AGIAMONDO
+                                    </span>
+                                </div>
+                                <div class="project-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 65%"></div>
+                                    </div>
+                                    <span class="progress-text">65% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card fade-in">
+                        <div class="project-image">
+                            <img src="images/projects/dignity-project.jpg" alt="DIGNITY Project">
+                            <div class="project-status active">Active</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>DIGNITY Anti-Torture Initiative</h3>
+                            <p class="project-description">
+                                Working with DIGNITY Foundation to combat torture and promote human rights through youth advocacy and legal awareness programs.
+                            </p>
+                            <div class="project-details">
+                                <div class="project-info">
+                                    <span class="info-item">
+                                        <strong>Duration:</strong> 2022 - 2024
+                                    </span>
+                                    <span class="info-item">
+                                        <strong>Location:</strong> Nationwide
+                                    </span>
+                                    <span class="info-item">
+                                        <strong>Partner:</strong> DIGNITY Foundation
+                                    </span>
+                                </div>
+                                <div class="project-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 80%"></div>
+                                    </div>
+                                    <span class="progress-text">80% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card fade-in">
+                        <div class="project-image">
+                            <img src="images/projects/ndi-project.jpg" alt="NDI Democracy Project">
+                            <div class="project-status completed">Completed</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Youth Democratic Engagement</h3>
+                            <p class="project-description">
+                                Collaborative project with National Democratic Institute to enhance youth participation in democratic processes and electoral systems.
+                            </p>
+                            <div class="project-details">
+                                <div class="project-info">
+                                    <span class="info-item">
+                                        <strong>Duration:</strong> 2020 - 2023
+                                    </span>
+                                    <span class="info-item">
+                                        <strong>Location:</strong> Western Area, Northern Province
+                                    </span>
+                                    <span class="info-item">
+                                        <strong>Partner:</strong> National Democratic Institute
+                                    </span>
+                                </div>
+                                <div class="project-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%"></div>
+                                    </div>
+                                    <span class="progress-text">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Statistics -->
+        <section class="impact-section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Our Impact</h2>
+                    <p>Measuring success through tangible outcomes</p>
+                </div>
+                <div class="impact-grid">
+                    <div class="impact-card fade-in">
+                        <div class="impact-icon">👥</div>
+                        <div class="impact-number">5,000+</div>
+                        <div class="impact-label">Youth Directly Impacted</div>
+                    </div>
+                    <div class="impact-card fade-in">
+                        <div class="impact-icon">🏘️</div>
+                        <div class="impact-number">50+</div>
+                        <div class="impact-label">Communities Reached</div>
+                    </div>
+                    <div class="impact-card fade-in">
+                        <div class="impact-icon">🤝</div>
+                        <div class="impact-number">15+</div>
+                        <div class="impact-label">Partner Organizations</div>
+                    </div>
+                    <div class="impact-card fade-in">
+                        <div class="impact-icon">📊</div>
+                        <div class="impact-number">25+</div>
+                        <div class="impact-label">Successful Projects</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Rolling text animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const transitionText = document.getElementById('transitionText');
+            const text = "Empowering Youth Through Innovative Initiatives";
+            
+            // Split text into words
+            const words = text.split(' ');
+            
+            // Clear the container
+            transitionText.innerHTML = '';
+            
+            // Create word elements
+            words.forEach((word, index) => {
+                const wordElement = document.createElement('span');
+                wordElement.className = 'word';
+                wordElement.textContent = word;
+                transitionText.appendChild(wordElement);
+                
+                // Add space after each word except the last one
+                if (index < words.length - 1) {
+                    const space = document.createElement('span');
+                    space.className = 'space';
+                    space.innerHTML = '&nbsp;';
+                    transitionText.appendChild(space);
+                }
+            });
+            
+            // Animate words one by one
+            const wordElements = document.querySelectorAll('.word');
+            
+            function animateWords() {
+                wordElements.forEach((word, index) => {
+                    setTimeout(() => {
+                        word.classList.add('active');
+                    }, index * 100); // 100ms delay between each word
+                });
+            }
+            
+            // Start animation after a short delay
+            setTimeout(animateWords, 500);
+            
+            // Simple fade-in animation on scroll
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.style.opacity = "1";
+                        element.style.transform = "translateY(0)";
+                    }
+                });
+            };
+            
+            // Set initial state
+            fadeElements.forEach(element => {
+                element.style.opacity = "0";
+                element.style.transform = "translateY(30px)";
+                element.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+            });
+            
+            // Check on load
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+        });
+    </script>
+</body>
+</html>

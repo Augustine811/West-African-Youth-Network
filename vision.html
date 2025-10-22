@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision - West African Youth Network</title>
+    <link rel="icon" type="image/x-icon" href="images/wayn-logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="about.css">
+   <link rel="icon" type="image/png" href="images/wayn_weblogo.png">
+    <style>
+        /* Transparent background and transition styles */
+        body {
+            background: transparent;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .about-container {
+            background: transparent;
+        }
+        
+        .about-hero {
+            background: transparent;
+            color: #1a5276;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(26, 82, 118, 0.05) 0%, rgba(46, 134, 193, 0.05) 100%);
+            z-index: -1;
+        }
+        
+        .about-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 50px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .about-section:hover {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        /* Transition letter styles */
+        .transition-letter {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+        
+        .transition-letter h3 {
+            color: #1a5276;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .transition-letter p {
+            line-height: 1.8;
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+        
+        .transition-letter .signature {
+            text-align: right;
+            margin-top: 30px;
+            font-style: italic;
+            color: #1a5276;
+            font-weight: 500;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .transition-letter {
+                padding: 30px 20px;
+                margin: 30px 15px;
+            }
+            
+            .transition-letter h3 {
+                font-size: 1.5rem;
+            }
+            
+            .transition-letter p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="wayn-navbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/west_africayouthnetwork-logo.png" alt="West African Youth Network Logo" class="navbar-logo">
+                WAYN Sierra Leone
+            </a>
+            <button class="navbar-toggle" aria-label="Toggle navigation">☰</button>
+            <ul class="navbar-menu">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active">About Us</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="about.html">About WAYN</a></li>
+                        <li><a class="dropdown-item active" href="vision.html">Vision</a></li>
+                        <li><a class="dropdown-item" href="mission.html">Mission</a></li>
+                        <li><a class="dropdown-item" href="mandate.html">Core Mandate</a></li>
+                        <li class="nav-item"><a class="nav-link" href="programs.html" data-i18n="navigation.programs">Programs & Projects</a></li>
+                    </ul>
+                </li>
+                <!-- Other menu items same as about.html -->
+            </ul>
+        </div>
+    </nav>
+
+    <main class="about-container">
+        <div class="about-hero">
+            <div class="container">
+                <h1>Our Vision</h1>
+                <p class="hero-subtitle">Building a Future Where Youth Lead Social Transformation</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="back-home">
+                <a href="index.html" class="back-home-btn">
+                    <span class="back-arrow">←</span>
+                    Back to Home
+                </a>
+            </div>
+
+            <!-- Transition Letter Section -->
+            <div class="transition-letter">
+                <h3>Our Vision for the Future</h3>
+                <p>At West African Youth Network, we envision a Sierra Leone where young people are not just participants but architects of their own future. A society where youth development is at the heart of national discourse, and where every young person has the opportunity to contribute meaningfully to governance and peacebuilding.</p>
+                <p>Our vision extends beyond today's challenges to tomorrow's possibilities. We see a future where safe spaces for youth development are the norm, not the exception. Where young leaders emerge from every community, equipped with the skills, confidence, and platform to drive sustainable social transformation.</p>
+                <div class="signature">
+                    <p>Towards a Youth-Led Future,<br>
+                    <strong>The WAYN Team</strong></p>
+                </div>
+            </div>
+
+            <div class="about-content">
+                <section class="about-section vision-section">
+                    <div class="section-header">
+                        <div class="section-icon">👁️</div>
+                        <h2>WAYN Vision</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>WAYN envisions a society in which youth development is prioritized within the socio-political discourse, whereby young people drive social transformation by participating in governance processes, advocating for youth issues, and assuming leadership roles in peacebuilding endeavors. We aspire to enhance the capacity of young people by providing safe spaces for youth in Sierra Leone.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="navbar.js"></script>
+    <script src="about.js"></script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+
+/* Membership Page Specific Styles */
+.membership-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Membership Hero Section */
+.membership-hero {
+    background: linear-gradient(135deg, #2c5aa0 0%, #1e3a6b 100%);
+    color: white;
+    padding: 80px 0 60px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.membership-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Back to Home Button */
+.back-home {
+    margin-bottom: 40px;
+}
+
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #2c5aa0;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid #2c5aa0;
+}
+
+.back-home-btn:hover {
+    background: transparent;
+    color: #2c5aa0;
+    transform: translateX(-5px);
+}
+
+.back-arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.back-home-btn:hover .back-arrow {
+    transform: translateX(-3px);
+}
+
+/* Membership Sections */
+.membership-section {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #2c5aa0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.membership-section h2 {
+    color: #2c5aa0;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.section-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Board Members Grid */
+.board-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.board-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.board-card:hover {
+    background: white;
+    border-color: #2c5aa0;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.member-avatar {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.member-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-initials {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2c5aa0, #1e3a6b);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-info h3 {
+    color: #2c5aa0;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.member-role {
+    color: #ff9800;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.member-tenure {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Partners Grid */
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.partner-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.partner-card:hover {
+    background: white;
+    border-color: #4CAF50;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.partner-logo {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.partner-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.partner-initials {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.partner-info h3 {
+    color: #2c5aa0;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.partner-location {
+    color: #666;
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+}
+
+.partner-duration {
+    color: #4CAF50;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Staff Grid */
+.staff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.staff-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.staff-card:hover {
+    background: white;
+    border-color: #9C27B0;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.staff-avatar {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.staff-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.staff-initials {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #9C27B0, #7b1fa2);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.staff-info h3 {
+    color: #2c5aa0;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.staff-role {
+    color: #9C27B0;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.staff-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contact-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #2c5aa0;
+}
+
+/* Different border colors for each section */
+.board-section {
+    border-left-color: #2c5aa0;
+}
+
+.partners-section {
+    border-left-color: #4CAF50;
+}
+
+.staff-section {
+    border-left-color: #9C27B0;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .membership-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .membership-section {
+        padding: 30px;
+    }
+    
+    .membership-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .board-grid,
+    .partners-grid,
+    .staff-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .membership-hero {
+        padding: 60px 0 40px;
+    }
+    
+    .membership-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .membership-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .board-card,
+    .partner-card,
+    .staff-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .member-avatar,
+    .partner-logo,
+    .staff-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .member-initials,
+    .partner-initials,
+    .staff-initials {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .membership-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .membership-section {
+        padding: 25px 20px;
+    }
+    
+    .membership-section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .section-icon {
+        font-size: 2.5rem;
+    }
+    
+    .back-home-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation Styles */
+.board-card,
+.partner-card,
+.staff-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.board-card.animate-in,
+.partner-card.animate-in,
+.staff-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}

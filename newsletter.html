@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter - West African Youth Network</title>
+    <link rel="icon" type="image/x-icon" href="images/wayn-logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/png" href="images/wayn_weblogo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c5aa0;
+            --secondary: #f9a826;
+            --dark: #1a2b4c;
+            --light: #f5f7fa;
+            --accent: #e74c3c;
+            --success: #27ae60;
+        }
+
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Home Button */
+        .home-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .home-btn {
+            display: flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .home-btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .home-icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .newsletter-hero {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-newsletter, .floating-mail, .floating-megaphone {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.1;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .floating-newsletter {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-mail {
+            top: 60%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+
+        .floating-megaphone {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .newsletter-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Issues Section */
+        .issues-section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .issue-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .issue-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .issue-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .issue-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .issue-card:hover .issue-image img {
+            transform: scale(1.05);
+        }
+
+        .issue-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .animated-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .issue-card:hover .animated-overlay {
+            opacity: 1;
+        }
+
+        .pulse-dot {
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pulse-ring {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .issue-content {
+            padding: 1.5rem;
+        }
+
+        .issue-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .issue-date {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .issue-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .issue-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .issue-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .download-btn:hover {
+            background-color: var(--dark);
+        }
+
+        .btn-icon {
+            margin-right: 8px;
+        }
+
+        .preview-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 2px solid var(--primary);
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .preview-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .view-all-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .view-all-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--secondary);
+            color: var(--dark);
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .view-all-btn:hover {
+            background-color: var(--dark);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .arrow {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .view-all-btn:hover .arrow {
+            transform: translateX(5px);
+        }
+
+        /* Archive Section */
+        .archive-section {
+            padding: 80px 0;
+            background-color: #f0f4f8;
+        }
+
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .archive-year {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .archive-year h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .animated-year {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .year-glow {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(249,168,38,0.2) 0%, rgba(249,168,38,0) 70%);
+            border-radius: 50%;
+            animation: glow 3s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .archive-months {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .month-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .month-link:hover {
+            background-color: #e9ecef;
+            border-left-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .month-name {
+            font-weight: 600;
+        }
+
+        .month-downloads {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        /* Subscription Section */
+        .subscription-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+        }
+
+        .subscription-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subscription-section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .subscription-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .subscription-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .subscribe-btn {
+            background-color: var(--secondary);
+            color: var(--dark);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .subscribe-btn:hover {
+            background-color: #e89c1a;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .home-button-container {
+                top: 10px;
+                left: 10px;
+            }
+            
+            .newsletter-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-stats {
+                gap: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .issues-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .issue-actions {
+                flex-direction: column;
+            }
+            
+            .subscription-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Button -->
+    <div class="home-button-container">
+        <a href="index.html" class="home-btn">
+            <span class="home-icon">🏠</span>
+            <span>Home</span>
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="newsletter-container">
+        <!-- Hero Section -->
+        <section class="newsletter-hero">
+            <div class="animated-background">
+                <div class="floating-newsletter">📰</div>
+                <div class="floating-mail">✉️</div>
+                <div class="floating-megaphone">📢</div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1>WAYN Newsletter</h1>
+                    <p class="hero-subtitle">Stay updated with our latest activities, success stories, and youth development insights</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">2,500+</span>
+                            <span class="stat-label">Subscribers</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">48</span>
+                            <span class="stat-label">Issues Published</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Countries Reached</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Issues -->
+        <section class="issues-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Latest Newsletter Issues</h2>
+                    <p>Browse through our recent publications and featured stories</p>
+                </div>
+
+                <div class="issues-grid">
+                    <!-- Issue 1 -->
+                    <div class="issue-card">
+                        <div class="issue-image">
+                            <div style="background: linear-gradient(135deg, #2c5aa0, #1a2b4c); height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">
+                                Youth Peacebuilding Summit
+                            </div>
+                            <div class="issue-badge">Featured</div>
+                            <div class="animated-overlay">
+                                <div class="pulse-dot"></div>
+                                <div class="pulse-ring"></div>
+                            </div>
+                        </div>
+                        <div class="issue-content">
+                            <div class="issue-meta">
+                                <span class="issue-date">March 2024</span>
+                                <span class="issue-pages">12 Pages</span>
+                            </div>
+                            <h3>Youth Peacebuilding Summit 2024</h3>
+                            <p>Highlights from our annual peacebuilding conference featuring young leaders from across West Africa.</p>
+                            <div class="issue-actions">
+                                <a href="#" class="download-btn">
+                                    <span class="btn-icon">📥</span>
+                                    Download PDF
+                                </a>
+                                <a href="#" class="preview-btn">Preview</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Issue 2 -->
+                    <div class="issue-card">
+                        <div class="issue-image">
+                            <div style="background: linear-gradient(135deg, #f9a826, #e89c1a); height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">
+                                Education Reform
+                            </div>
+                            <div class="issue-badge">Featured</div>
+                            <div class="animated-overlay">
+                                <div class="pulse-dot"></div>
+                                <div class="pulse-ring"></div>
+                            </div>
+                        </div>
+                        <div class="issue-content">
+                            <div class="issue-meta">
+                                <span class="issue-date">February 2024</span>
+                                <span class="issue-pages">10 Pages</span>
+                            </div>
+                            <h3>Education Reform Progress Report</h3>
+                            <p>Updates on our advocacy efforts for educational reform and anti-corruption initiatives.</p>
+                            <div class="issue-actions">
+                                <a href="#" class="download-btn">
+                                    <span class="btn-icon">📥</span>
+                                    Download PDF
+                                </a>
+                                <a href="#" class="preview-btn">Preview</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Issue 3 -->
+                    <div class="issue-card">
+                        <div class="issue-image">
+                            <div style="background: linear-gradient(135deg, #e74c3c, #c0392b); height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">
+                                Women Empowerment
+                            </div>
+                            <div class="animated-overlay">
+                                <div class="pulse-dot"></div>
+                                <div class="pulse-ring"></div>
+                            </div>
+                        </div>
+                        <div class="issue-content">
+                            <div class="issue-meta">
+                                <span class="issue-date">January 2024</span>
+                                <span class="issue-pages">8 Pages</span>
+                            </div>
+                            <h3>Women & Girls Empowerment</h3>
+                            <p>Spotlight on our gender equality programs and success stories of young women leaders.</p>
+                            <div class="issue-actions">
+                                <a href="#" class="download-btn">
+                                    <span class="btn-icon">📥</span>
+                                    Download PDF
+                                </a>
+                                <a href="#" class="preview-btn">Preview</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="view-all-container">
+                    <a href="#all-issues" class="view-all-btn">
+                        <span>View All Issues</span>
+                        <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Archive Section -->
+        <section class="archive-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Newsletter Archive</h2>
+                    <p>Access our complete collection of past newsletters</p>
+                </div>
+
+                <div class="archive-grid">
+                    <div class="archive-year">
+                        <h3>2024</h3>
+                        <div class="animated-year">
+                            <div class="year-glow"></div>
+                        </div>
+                        <div class="archive-months">
+                            <a href="#" class="month-link">
+                                <span class="month-name">March</span>
+                                <span class="month-downloads">1.2K downloads</span>
+                            </a>
+                            <a href="#" class="month-link">
+                                <span class="month-name">February</span>
+                                <span class="month-downloads">980 downloads</span>
+                            </a>
+                            <a href="#" class="month-link">
+                                <span class="month-name">January</span>
+                                <span class="month-downloads">850 downloads</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="archive-year">
+                        <h3>2023</h3>
+                        <div class="animated-year">
+                            <div class="year-glow"></div>
+                        </div>
+                        <div class="archive-months">
+                            <a href="#" class="month-link">
+                                <span class="month-name">December</span>
+                                <span class="month-downloads">720 downloads</span>
+                            </a>
+                            <a href="#" class="month-link">
+                                <span class="month-name">November</span>
+                                <span class="month-downloads">680 downloads</span>
+                            </a>
+                            <a href="#" class="month-link">
+                                <span class="month-name">October</span>
+                                <span class="month-downloads">610 downloads</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="archive-year">
+                        <h3>2022</h3>
+                        <div class="animated-year">
+                            <div class="year-glow"></div>
+                        </div>
+                        <div class="archive-months">
+                            <a href="#" class="month-link">
+                                <span class="month-name">September</span>
+                                <span class="month-downloads">540 downloads</span>
+                            </a>
+                            <a href="#" class="month-link">
+                                <span class="month-name">August</span>
+                                <span class="month-downloads">490 downloads</span>
+                            </a>
+                            <a href="#" class="month-link">
+                                <span class="month-name">July</span>
+                                <span class="month-downloads">430 downloads</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subscription Section -->
+        <section class="subscription-section">
+            <div class="container">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p>Get the latest updates on youth empowerment, events, and opportunities delivered to your inbox</p>
+                <form class="subscription-form">
+                    <input type="email" class="subscription-input" placeholder="Enter your email address" required>
+                    <button type="submit" class="subscribe-btn">Subscribe Now</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Simple animation for newsletter cards on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const issueCards = document.querySelectorAll('.issue-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            issueCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s, transform 0.5s';
+                observer.observe(card);
+            });
+            
+            // Subscription form handling
+            const subscriptionForm = document.querySelector('.subscription-form');
+            subscriptionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('.subscription-input').value;
+                alert(`Thank you for subscribing with ${email}! You'll receive our next newsletter.`);
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>

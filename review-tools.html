@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Tools - West African Youth Network</title>
+    <link rel="icon" type="image/x-icon" href="images/wayn-logo.png">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(253, 187, 45, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(26, 42, 108, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(178, 31, 31, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Navigation */
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        /* Home Button */
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .home-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .home-button::before {
+            content: '←';
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        
+        /* WAYN Logo */
+        .wayn-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .logo-text {
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* Transition Text with Rolling Effect */
+        .transition-text-container {
+            text-align: center;
+            margin: 30px 0 40px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .transition-text {
+            font-size: 1.4rem;
+            color: white;
+            font-weight: 500;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: inline-block;
+        }
+        
+        .word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px) rotateX(90deg);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .word.active {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+        }
+        
+        .space {
+            display: inline-block;
+            width: 6px;
+        }
+        
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .capacity-content {
+            margin: 40px 0;
+        }
+        
+        .content-with-image {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .content-with-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .content-with-image.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .content-text {
+            flex: 1;
+        }
+        
+        .content-text h2 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .content-text p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        
+        .content-image {
+            flex: 0 0 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .content-with-image:hover .content-image {
+            transform: scale(1.03);
+        }
+        
+        .content-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .content-with-image:hover .content-image img {
+            transform: scale(1.1);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 60px 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fdbb2d;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin: 60px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-section h2 {
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #fdbb2d, #b21f1f);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-20px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(20px) rotate(240deg);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .content-with-image {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .content-with-image.reverse {
+                flex-direction: column;
+            }
+            
+            .content-image {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.3rem;
+            }
+            
+            .transition-text {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header-nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .page-header {
+                padding: 30px 20px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .content-with-image {
+                padding: 30px 20px;
+            }
+            
+            .content-text h2 {
+                font-size: 1.6rem;
+            }
+            
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-section {
+                padding: 40px 20px;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .transition-text {
+                font-size: 1.1rem;
+                padding: 15px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+            }
+            
+            .content-with-image {
+                padding: 25px 15px;
+            }
+            
+            .content-text h2 {
+                font-size: 1.4rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .transition-text {
+                font-size: 1rem;
+                padding: 12px 15px;
+            }
+            
+            .wayn-logo {
+                padding: 8px 15px;
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <div class="container">
+        <div class="header-nav">
+            <a href="index.html" class="home-button">Back to Home</a>
+            
+            <!-- WAYN Logo -->
+            <div class="wayn-logo">
+             <link rel="icon" type="image/png" href="images/wayn_weblogo.png">
+                <span class="logo-text">WAYN Sierra Leone</span>
+            </div>
+        </div>
+        
+        <!-- Transition Text with Rolling Effect -->
+        <div class="transition-text-container">
+            <div class="transition-text" id="transitionText">
+                <!-- Words will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <section class="page-header fade-in">
+            <h1>Capacity Building Initiatives</h1>
+            <p>Our programs are designed to address the unique challenges and opportunities facing West African youth, providing them with the tools they need to succeed in a rapidly changing world.</p>
+        </section>
+        
+        <section class="capacity-content">
+            <div class="content-with-image fade-in">
+                <div class="content-text">
+                    <h2>Digital Skills Training</h2>
+                    <p>Our digital skills training program equips youth with essential technology competencies needed in today's digital economy. Through hands-on workshops and practical sessions, participants learn web development, digital marketing, data analysis, and other crucial digital skills.</p>
+                    <p>We partner with industry experts to ensure our curriculum remains relevant and up-to-date with current market demands. Our graduates have gone on to secure employment in tech companies or launch their own digital ventures.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/conference.jpg" alt="Digital Skills Training Session">
+                </div>
+            </div>
+            
+            <div class="content-with-image reverse fade-in">
+                <div class="content-text">
+                    <h2>Entrepreneurship Development</h2>
+                    <p>Our entrepreneurship program fosters innovation and business acumen among West African youth. We provide mentorship, seed funding opportunities, and business development support to help young entrepreneurs transform their ideas into viable businesses.</p>
+                    <p>Participants learn about business planning, financial management, marketing strategies, and how to pitch their ideas to potential investors. Our network of successful entrepreneurs serves as mentors throughout the program.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/workshop-1.jpg" alt="Entrepreneurship Workshop">
+                </div>
+            </div>
+            
+            <div class="content-with-image fade-in">
+                <div class="content-text">
+                    <h2>Leadership and Governance</h2>
+                    <p>This program focuses on developing the next generation of ethical leaders for West Africa. Through interactive sessions, case studies, and community projects, participants enhance their leadership capabilities and understanding of good governance principles.</p>
+                    <p>We emphasize values-based leadership, conflict resolution, public speaking, and community engagement. Graduates of this program are equipped to take on leadership roles in their communities and beyond.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/cbs-eng.jpg" alt="Leadership Training Program">
+                </div>
+            </div>
+            
+            <div class="content-with-image reverse fade-in">
+                <div class="content-text">
+                    <h2>Environmental Sustainability</h2>
+                    <p>Our environmental sustainability program educates youth about climate change, conservation, and sustainable practices. Participants engage in tree planting initiatives, waste management projects, and awareness campaigns in their communities.</p>
+                    <p>We collaborate with environmental organizations to provide practical training on sustainable agriculture, renewable energy, and eco-friendly business models. This program empowers youth to become environmental stewards in their communities.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/team-colaboration.jpg" alt="Environmental Sustainability Program">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stat-card fade-in">
+                <div class="stat-number">2,500+</div>
+                <div class="stat-label">Youth Trained</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Programs Offered</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-number">85%</div>
+                <div class="stat-label">Employment Rate</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Partner Organizations</div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta-section fade-in">
+            <h2>Join Our Capacity Building Programs</h2>
+            <p>Take the next step in your personal and professional development. Our programs are designed to equip you with the skills and knowledge needed to succeed in today's competitive landscape.</p>
+            <a href="contact.html" class="cta-button">Get Involved Today</a>
+        </section>
+    </main>
+
+    <script>
+        // Rolling text animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const transitionText = document.getElementById('transitionText');
+            const text = "Empowering West African youth through comprehensive training programs that develop skills, foster leadership, and create sustainable opportunities for growth and development";
+            
+            // Split text into words
+            const words = text.split(' ');
+            
+            // Clear the container
+            transitionText.innerHTML = '';
+            
+            // Create word elements
+            words.forEach((word, index) => {
+                const wordElement = document.createElement('span');
+                wordElement.className = 'word';
+                wordElement.textContent = word;
+                transitionText.appendChild(wordElement);
+                
+                // Add space after each word except the last one
+                if (index < words.length - 1) {
+                    const space = document.createElement('span');
+                    space.className = 'space';
+                    space.innerHTML = '&nbsp;';
+                    transitionText.appendChild(space);
+                }
+            });
+            
+            // Animate words one by one
+            const wordElements = document.querySelectorAll('.word');
+            
+            function animateWords() {
+                wordElements.forEach((word, index) => {
+                    setTimeout(() => {
+                        word.classList.add('active');
+                    }, index * 100); // 100ms delay between each word
+                });
+            }
+            
+            // Start animation after a short delay
+            setTimeout(animateWords, 500);
+            
+            // Simple fade-in animation on scroll
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.style.opacity = "1";
+                        element.style.transform = "translateY(0)";
+                    }
+                });
+            };
+            
+            // Set initial state
+            fadeElements.forEach(element => {
+                element.style.opacity = "0";
+                element.style.transform = "translateY(30px)";
+                element.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+            });
+            
+            // Check on load
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+        });
+    </script>
+</body>
+</html>

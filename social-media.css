@@ -1,0 +1,565 @@
+/* Social Media Page Styles */
+.social-media-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Hero Section */
+.social-media-hero {
+    position: relative;
+    height: 60vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2c5aa0 0%, #1e3a6b 100%);
+    color: white;
+    overflow: hidden;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #fff, #e3f2fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Animated Social Icons */
+.animated-social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.icon-wrapper {
+    perspective: 1000px;
+}
+
+.social-icon-animated {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+    cursor: pointer;
+}
+
+.social-icon-animated:hover {
+    transform: scale(1.1) rotateY(180deg);
+}
+
+.social-icon-animated.facebook {
+    background: linear-gradient(45deg, #1877f2, #0d5cb6);
+    animation-delay: 0s;
+}
+
+.social-icon-animated.twitter {
+    background: linear-gradient(45deg, #1da1f2, #0c85d0);
+    animation-delay: 0.5s;
+}
+
+.social-icon-animated.instagram {
+    background: linear-gradient(45deg, #e4405f, #c13584, #833ab4);
+    animation-delay: 1s;
+}
+
+/* Floating Shapes Animation */
+.hero-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: float 6s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 100px;
+    height: 100px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+.shape-3 {
+    width: 80px;
+    height: 80px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+/* Platforms Section */
+.platforms-section {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2c5aa0;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 4rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.platform-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+    position: relative;
+    overflow: hidden;
+}
+
+.platform-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(45deg, #2c5aa0, #1e3a6b);
+}
+
+.platform-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.platform-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.platform-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.facebook-card .platform-icon {
+    background: linear-gradient(45deg, #1877f2, #0d5cb6);
+}
+
+.twitter-card .platform-icon {
+    background: linear-gradient(45deg, #1da1f2, #0c85d0);
+}
+
+.instagram-card .platform-icon {
+    background: linear-gradient(45deg, #e4405f, #c13584, #833ab4);
+}
+
+.platform-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.platform-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* Animated Feed Elements */
+.animated-feed {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.feed-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.feed-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e9ecef;
+    flex-shrink: 0;
+}
+
+.feed-content {
+    flex: 1;
+}
+
+.feed-line {
+    height: 12px;
+    background: #e9ecef;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+.feed-line.short {
+    width: 60%;
+}
+
+.feed-line.medium {
+    width: 80%;
+}
+
+.feed-line.long {
+    width: 95%;
+}
+
+/* Tweet Animation */
+.tweet {
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+}
+
+.tweet-header {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.tweet-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e9ecef;
+    flex-shrink: 0;
+}
+
+.tweet-author {
+    flex: 1;
+}
+
+.author-line {
+    height: 14px;
+    background: #e9ecef;
+    margin-bottom: 6px;
+    border-radius: 7px;
+    width: 60%;
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+.handle-line {
+    height: 12px;
+    background: #e9ecef;
+    border-radius: 6px;
+    width: 40%;
+    animation: shimmer 2s ease-in-out infinite 0.5s;
+}
+
+.tweet-content {
+    margin-bottom: 1rem;
+}
+
+.tweet-line {
+    height: 12px;
+    background: #e9ecef;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    animation: shimmer 2s ease-in-out infinite 1s;
+}
+
+.tweet-line.short {
+    width: 70%;
+}
+
+/* Instagram Gallery Animation */
+.animated-gallery {
+    margin-bottom: 2rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.gallery-item {
+    aspect-ratio: 1;
+    background: #e9ecef;
+    border-radius: 8px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.gallery-item.delay-1 {
+    animation-delay: 0.5s;
+}
+
+.gallery-item.delay-2 {
+    animation-delay: 1s;
+}
+
+.gallery-item.delay-3 {
+    animation-delay: 1.5s;
+}
+
+/* Platform Links */
+.platform-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #2c5aa0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #2c5aa0;
+    border-radius: 25px;
+    background: white;
+}
+
+.platform-link:hover {
+    background: #2c5aa0;
+    color: white;
+    transform: translateX(5px);
+}
+
+.link-arrow {
+    transition: transform 0.3s ease;
+}
+
+.platform-link:hover .link-arrow {
+    transform: translateX(3px);
+}
+
+/* Live Feed Section */
+.live-feed-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.live-feed-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.feed-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.feed-item {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.feed-item.animated {
+    animation: slideUp 0.6s ease forwards;
+}
+
+.feed-item.animated.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.feed-item.animated.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.feed-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feed-image {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #e9ecef;
+    border-radius: 10px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.feed-content {
+    flex: 1;
+}
+
+.feed-title {
+    font-size: 1.3rem;
+    color: #2c5aa0;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.feed-excerpt {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.feed-date {
+    color: #999;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background: #e9ecef;
+    }
+    50% {
+        background: #dee2e6;
+    }
+    100% {
+        background: #e9ecef;
+    }
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .animated-social-icons {
+        gap: 1rem;
+    }
+    
+    .social-icon-animated {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .platforms-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .feed-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .feed-image {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-media-hero {
+        height: 50vh;
+        min-height: 400px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .platform-card {
+        padding: 1.5rem;
+    }
+}

@@ -1,0 +1,401 @@
+/* about.css */
+/* About Page Specific Styles */
+.about-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* About Hero Section */
+.about-hero {
+    background: linear-gradient(135deg, #2c5aa0 0%, #1e3a6b 100%);
+    color: white;
+    padding: 80px 0 60px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.about-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Back to Home Button */
+.back-home {
+    margin-bottom: 40px;
+}
+
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #2c5aa0;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid #2c5aa0;
+}
+
+.back-home-btn:hover {
+    background: transparent;
+    color: #2c5aa0;
+    transform: translateX(-5px);
+}
+
+.back-arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.back-home-btn:hover .back-arrow {
+    transform: translateX(-3px);
+}
+
+/* About Content */
+.about-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-section {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #2c5aa0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.section-icon {
+    font-size: 2.5rem;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+}
+
+.about-section h2 {
+    color: #2c5aa0;
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.section-content {
+    line-height: 1.8;
+    color: #333;
+}
+
+.section-content p {
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+}
+
+/* Different border colors for each section */
+.vision-section {
+    border-left-color: #4CAF50;
+}
+
+.vision-section .section-icon {
+    background: #E8F5E8;
+}
+
+.mission-section {
+    border-left-color: #FF9800;
+}
+
+.mission-section .section-icon {
+    background: #FFF3E0;
+}
+
+.mandate-section {
+    border-left-color: #9C27B0;
+}
+
+.mandate-section .section-icon {
+    background: #F3E5F5;
+}
+
+/* Focus Areas Section */
+.focus-areas {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    margin-top: 50px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.focus-areas h3 {
+    text-align: center;
+    color: #2c5aa0;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+.focus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.focus-item {
+    text-align: center;
+    padding: 30px 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.focus-item:hover {
+    background: white;
+    border-color: #2c5aa0;
+    transform: translateY(-5px);
+}
+
+.focus-item .focus-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.focus-item h4 {
+    color: #2c5aa0;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.focus-item p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 1024px) {
+    .about-hero h1 {
+        font-size: 2.8rem;
+    }
+    
+    .about-content {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 968px) {
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+        padding: 0 20px;
+    }
+    
+    .about-section {
+        padding: 30px;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .section-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+    
+    .about-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .focus-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 60px 0 40px;
+    }
+    
+    .about-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .about-section {
+        padding: 25px;
+        margin-bottom: 20px;
+    }
+    
+    .about-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .focus-areas {
+        padding: 30px 25px;
+        margin-top: 30px;
+    }
+    
+    .focus-areas h3 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .focus-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .section-content p {
+        font-size: 1rem;
+    }
+    
+    .back-home {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-hero {
+        padding: 50px 0 30px;
+    }
+    
+    .about-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .about-section {
+        padding: 20px;
+        border-left-width: 4px;
+    }
+    
+    .about-section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .focus-areas {
+        padding: 25px 20px;
+    }
+    
+    .focus-areas h3 {
+        font-size: 1.6rem;
+    }
+    
+    .focus-item {
+        padding: 20px 15px;
+    }
+    
+    .focus-item .focus-icon {
+        font-size: 2.5rem;
+    }
+    
+    .focus-item h4 {
+        font-size: 1.1rem;
+    }
+    
+    .back-home-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .section-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 360px) {
+    .about-hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .about-section {
+        padding: 15px;
+    }
+    
+    .section-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .focus-item {
+        padding: 15px 10px;
+    }
+}
+
+/* Animation Styles */
+.about-section,
+.focus-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.about-section.animate-in,
+.focus-item.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation delays */
+.vision-section { transition-delay: 0.1s; }
+.mission-section { transition-delay: 0.2s; }
+.mandate-section { transition-delay: 0.3s; }
+.focus-areas { transition-delay: 0.4s; }
+
+/* Touch device optimizations */
+@media (hover: none) {
+    .about-section:hover {
+        transform: none;
+    }
+    
+    .focus-item:hover {
+        transform: none;
+        border-color: transparent;
+    }
+    
+    .back-home-btn:hover {
+        transform: none;
+        background: #2c5aa0;
+        color: white;
+    }
+}
